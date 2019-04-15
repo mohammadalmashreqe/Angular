@@ -1,0 +1,52 @@
+<div class='card'>
+  <div class='card-header'>
+    {{pageTitle}}
+  </div>
+  <div class='card-body'>
+   
+  
+    <div class='table-responsive'>
+      <table class='table'
+             *ngIf='List.length'>
+        <thead>
+          <tr>
+        
+            <th>Name</th>
+            <th>Order</th>
+            <th># Of Activity</th>
+            <th></th>
+
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let product of List'>
+        
+            <td> {{product.name}} </td>
+            <td> {{product.order}} </td>
+             <td>{{product.Activities.length}}</td>
+           <td>  <a [routerLink]="['/Details',product.butiId]" >Details   </a>
+            <a [routerLink]="['/EditButton',product.butiId]" >  Edit</a>
+            <a [routerLink]="['/EditButton',product.butiId]" >  Delete</a>
+
+          </td>
+        
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="card-footer">
+      <button class="btn btn-outline-secondary" style="float: right" (click)="onCreate()" >
+        
+        Create Button
+      
+      
+      </button>
+      
+      
+      </div>
+
+</div>

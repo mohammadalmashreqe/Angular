@@ -1,0 +1,219 @@
+<div class="card">
+
+  <div class="card-header">
+
+    {{PageTitle +'  : ' }}
+
+  </div>
+
+
+
+
+
+
+
+
+
+  <div class="card-body">
+
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="exampleInputEmail1">Name : </label>
+      <input type="email" [(ngModel)]='name' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="exampleInputPassword1">Order : </label>
+      <input type="number" [(ngModel)]='order' class="form-control" id="exampleInputPassword1">
+    </div>
+
+    <br>
+
+
+    <div class="form-group mx-sm-3 mb-2">
+      <button class="btn btn-outline-secondary" (click)="onAddActivity()" *ngIf='!this.ShowForm'>
+        Add Activity
+
+
+      </button>
+
+    </div>
+
+    <div class="card" *ngIf="ShowForm">
+
+      <div class="card-header">
+
+        Add Activity :
+
+      </div>
+
+
+
+
+
+
+
+
+
+      <div class="card-body">
+
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="exampleInputEmail1">Type : </label>
+
+          <select class="form-control dropdown" [(ngModel)]='Type'>
+            <option value="Print_ticket_type">Print ticket type</option>
+            <option value="Request_identification">Request identification</option>
+            <option value="Confirmation activity">Confirmation activity</option>
+
+          </select>
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="exampleInputPassword1">Information message : </label>
+          <input [(ngModel)]="Information_message" class="form-control" id="exampleInputPassword1">
+        </div>
+
+
+
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onsaveActivity()">
+              save
+
+
+            </button>
+            <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onCancel()">
+              Cancel
+
+
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <br>
+
+    <div class='table-responsive' style="border:1px solid black; padding: 10px">
+      <h6>Activities Added : </h6>
+      <br>
+      <table class='table' *ngIf='Activities.length'>
+
+        <thead>
+          <tr>
+
+            <th>Information Message </th>
+            <th>Type </th>
+            <th> </th>
+
+
+
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr *ngFor='let product of Activities'>
+
+            <td> {{Activities.informationMessage}} </td>
+            <td> {{Activities.Type}} </td>
+
+            <td> <a [routerLink]="['/Details']">Delete </a>
+              <a [routerLink]="['/EditButton']" (click)="onEdit()"> Edit</a>
+            </td>
+
+          </tr>
+          <div class="card" *ngIf="showEdit">
+            <div class="card-header">
+              Edit Activity
+
+            </div>
+            <div class='card-body'>
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="exampleInputEmail1">Type : </label>
+          
+                    <select class="form-control dropdown" [(ngModel)]='Type'>
+                      <option value="Print_ticket_type">Print ticket type</option>
+                      <option value="Request_identification">Request identification</option>
+                      <option value="Confirmation activity">Confirmation activity</option>
+          
+                    </select>
+                  </div>
+                  <div class="form-group mx-sm-3 mb-2">
+                    <label for="exampleInputPassword1">Information message : </label>
+                    <input [(ngModel)]="Information_message" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  
+          </div>
+          <div class="card-footer">
+              <div class="row">
+                <div class="col-md-4">
+      
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                  <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onsaveedit()">
+                    save
+      
+      
+                  </button>
+                  <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onsaveedit()">
+                    Cancel
+      
+      
+                  </button>
+      
+                </div>
+              </div>
+      
+            </div>
+
+
+            
+          </div>
+        
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-4">
+
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <button class="btn btn-outline-secondary" style="float:right" (click)="onCreate()">
+          Create
+
+
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

@@ -1,0 +1,64 @@
+
+
+ <div class="card">
+
+<div class="card-header">
+
+ {{PageTitle +'  : ' }}
+
+</div>
+<div class="card-body">
+Name : {{CrrentButton.name}}
+<br>
+Order : {{CrrentButton.order}}
+<br>
+<br>
+<div style="border:1px solid black; padding: 10px">
+Activities List : 
+<br>
+<br>
+<div class='table-responsive'>
+    <table class='table'
+           *ngIf='CrrentButton.Activities.length'>
+      <thead>
+        <tr>
+      
+          <th>information Message</th>
+          <th>Type</th>
+          <th></th>
+     
+
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let product of CrrentButton.Activities'>
+      
+          <td> {{product.informationMessage}} </td>
+          <td> {{product.Type}} </td>
+          <td> <a [routerLink]="['/ActivityDetails',product.ActId,CrrentButton.butiId]" >Details </a> 
+            <a [routerLink]="['/EditActivity',product.ActId,CrrentButton.butiId]" > Edit</a>
+            <a [routerLink]="['/EditActivity',product.ActId,CrrentButton.butiId]" > Delete</a>
+            </td>
+         
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div></div>
+<div class="card-footer">
+<button class="btn btn-outline-secondary" (click)="onBack()" >
+  <i class="fa fa-chevron-left"></i>
+  Back
+
+
+</button>
+
+
+</div>
+
+
+ </div>
+
+
