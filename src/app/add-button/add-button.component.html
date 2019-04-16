@@ -60,8 +60,8 @@
           <label for="exampleInputEmail1">Type : </label>
 
           <select class="form-control dropdown" [(ngModel)]='Type'>
-            <option value="Print_ticket_type">Print ticket type</option>
-            <option value="Request_identification">Request identification</option>
+            <option value="Print ticket type">Print ticket type</option>
+            <option value="Request identification">Request identification</option>
             <option value="Confirmation activity">Confirmation activity</option>
 
           </select>
@@ -102,7 +102,7 @@
 
     <br>
 
-    <div class='table-responsive' style="border:1px solid black; padding: 10px">
+    <div id="divdiv" class='table-responsive' style="border:1px solid black; padding: 10px" *ngIf='Activities.length'>
       <h6>Activities Added : </h6>
       <br>
       <table class='table' *ngIf='Activities.length'>
@@ -122,10 +122,10 @@
         <tbody>
           <tr *ngFor='let product of Activities'>
 
-            <td> {{Activities.informationMessage}} </td>
-            <td> {{Activities.Type}} </td>
+            <td> {{product.informationMessage}} </td>
+            <td> {{product.Type}} </td>
 
-            <td> <a [routerLink]="['/Details']">Delete </a>
+            <td> <a (click)="ondeletActivity(product.ActId)" [routerLink]="['/EditButton']" >Delete </a>
               <a [routerLink]="['/EditButton']" (click)="onEdit()"> Edit</a>
             </td>
 

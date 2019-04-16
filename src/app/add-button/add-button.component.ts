@@ -3,6 +3,7 @@ import { IActivity } from '../butoons-list/IActivity';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonServicesService } from '../button-services.service';
 import { IButton } from '../butoons-list/IButton';
+import { resolveDefinition } from '@angular/core/src/view/util';
 
 @Component({
   
@@ -15,7 +16,7 @@ export class AddButtonComponent implements OnInit {
   public showEdit:boolean =false; 
   Type:string;
  public Information_message:string;
-  public  Activities : IActivity []=[{ActId:1,informationMessage:"hiiii",Type:"helooo"},{ActId:2,informationMessage:"yooooooooo",Type:"yoyo"}];
+  public  Activities : IActivity []=[];
  public name:string;
   public order:string;
   constructor(private route:ActivatedRoute,private router:Router,private myList:ButtonServicesService) { }
@@ -29,14 +30,15 @@ export class AddButtonComponent implements OnInit {
   }
   onsaveActivity():void 
   {
-    this.ShowForm=false;
+    
      
      const temp = <IActivity> {
      ActId:this.Activities.length,
      Type:this.Type,
     informationMessage:this.Information_message
 
-  }
+  };
+  this.ShowForm=false;
   
   
 
@@ -65,5 +67,20 @@ export class AddButtonComponent implements OnInit {
   }
   onsaveedit(){
     this.showEdit=false;
+  }
+  ondeletActivity (actid:number):void 
+  {let pos=-1; 
+for(var i=0; i<this.Activities.length;i++)
+{
+  if(this.Activities[i].ActId==actid)
+  {pos=i; 
+  break; 
+  }
+
+}
+if(pos!=-1)
+delete this.Activities[pos];
+
+
   }
 }
