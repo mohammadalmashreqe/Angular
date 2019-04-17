@@ -18,10 +18,10 @@ export class EditActivityComponent implements OnInit {
     this. bid=+this.route.snapshot.paramMap.get("bid");
 
     let current=this.myList.getActivity(Id);
-
+ 
     this.Information_message=current.informationMessage;
-    this.Type=current.Type;
-
+  
+ this.Type=current.Type;
 
    }
 
@@ -35,7 +35,11 @@ export class EditActivityComponent implements OnInit {
 
   onUpdate () : void 
   {
-    
+    let Id= +this.route.snapshot.paramMap.get("id");
+    this.myList.getActivity(Id).informationMessage=this.Information_message;
+    this.myList.getActivity(Id).Type=this.Type;
+    this.onBack();
+
 
   }
 

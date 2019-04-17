@@ -26,7 +26,13 @@ export class ButoonsListComponent implements OnInit {
   onCreate():void 
   {
    
-    this.router.navigate(['/AddButton']);
+    this.router.navigate(['/AddButton',-100]);
     
+  }
+  onDelete(Id:number):void
+  {
+    
+    this.myList.DeleteButton(Id);
+
   }
 }

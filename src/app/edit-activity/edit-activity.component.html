@@ -13,8 +13,14 @@
        
       </div>
       <div class="form-group mx-sm-3 mb-2">
-        <label for="exampleInputPassword1">Type :</label>
-        <input type="number" [(ngModel)]='Type' class="form-control" id="exampleInputPassword1" >
+        <label for="exampleInputEmail1">Type : </label>
+
+        <select class="form-control dropdown" [(ngModel)]='Type'>
+          <option value="Print ticket type">Print ticket type</option>
+          <option value="Request identification">Request identification</option>
+          <option value="Confirmation activity">Confirmation activity</option>
+
+        </select>
       </div>
      
 

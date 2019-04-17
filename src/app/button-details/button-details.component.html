@@ -13,13 +13,13 @@ Name : {{CrrentButton.name}}
 Order : {{CrrentButton.order}}
 <br>
 <br>
-<div style="border:1px solid black; padding: 10px">
+<div style="border:1px solid black; padding: 10px" *ngIf='CrrentButton.Activities.length'>
 Activities List : 
 <br>
 <br>
 <div class='table-responsive'>
     <table class='table'
-           *ngIf='CrrentButton.Activities.length'>
+           >
       <thead>
         <tr>
       
@@ -37,13 +37,61 @@ Activities List :
           <td> {{product.informationMessage}} </td>
           <td> {{product.Type}} </td>
           <td> <a [routerLink]="['/ActivityDetails',product.ActId,CrrentButton.butiId]" >Details </a> 
-            <a [routerLink]="['/EditActivity',product.ActId,CrrentButton.butiId]" > Edit</a>
-            <a [routerLink]="['/EditActivity',product.ActId,CrrentButton.butiId]" > Delete</a>
+            <a [routerLink]="['/AddButton']" (click)="onEditActivity(product.ActId)" > Edit</a>
+            <a (click)="onDelete(product.ActId)" [routerLink]="['/AddButton']"> Delete</a>
             </td>
          
         </tr>
       </tbody>
     </table>
+    <div class="card" *ngIf="showEdit">
+      <div class="card-header">
+        Edit Activity
+
+      </div>
+      <div class='card-body'>
+          <div class="form-group mx-sm-3 mb-2">
+              <label for="exampleInputEmail1">Type : </label>
+    
+              <select class="form-control dropdown" [(ngModel)]='Type'>
+                <option value="Print ticket type">Print ticket type</option>
+                <option value="Request identification">Request identification</option>
+                <option value="Confirmation activity">Confirmation activity</option>
+    
+              </select>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <label for="exampleInputPassword1">Information message : </label>
+              <input [(ngModel)]="Information_message" class="form-control" id="exampleInputPassword1">
+            </div>
+            
+    </div>
+    <div class="card-footer">
+        <div class="row">
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onsaveedit()">
+              Save
+
+
+            </button>
+            <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onCanceledit()">
+              Cancel
+
+
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      
+    </div>
   </div>
 
 </div></div>

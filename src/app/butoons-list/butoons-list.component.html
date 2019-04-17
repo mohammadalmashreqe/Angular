@@ -13,7 +13,7 @@
         
             <th>Name</th>
             <th>Order</th>
-            <th># Of Activity</th>
+            <th>Number Of Activity</th>
             <th></th>
 
             
@@ -25,9 +25,9 @@
             <td> {{product.name}} </td>
             <td> {{product.order}} </td>
              <td>{{product.Activities.length}}</td>
-           <td>  <a [routerLink]="['/Details',product.butiId]" >Details   </a>
-            <a [routerLink]="['/EditButton',product.butiId]" >  Edit</a>
-            <a [routerLink]="['/EditButton',product.butiId]" >  Delete</a>
+           <td>  <a [routerLink]="['/Details',product.butiId]"  >Details   </a>
+            <a [routerLink]="['/AddButton',product.butiId]"  >  Edit</a>
+            <a (click)="onDelete(product.butiId)" [routerLink]="['/AddButton']">  Delete</a>
 
           </td>
         

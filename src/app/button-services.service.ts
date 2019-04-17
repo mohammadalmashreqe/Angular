@@ -6,20 +6,20 @@ import { IActivity } from './butoons-list/IActivity';
   providedIn: 'root'
 })
 export class ButtonServicesService {
-  List :IButton[] =[
-    {butiId:1, name:'deposit', order:'1',Activities:[{ActId:1, Type:"Print",informationMessage:"hi"},{ActId:2, Type:"Print",informationMessage:"hi"}]},
-    {butiId:2,name:'deposit', order:'1',Activities:[{ActId:2,Type:"Print",informationMessage:"hi"}]},
-    {butiId:3,name:'deposit', order:'1',Activities:[{ActId:3,Type:"Print",informationMessage:"hi"}]}
-  ];
+ static List :IButton[] =[];
   constructor() { }
 
+  AddButton (b :IButton):void 
+  {
+    ButtonServicesService.List.push(b);
+  }
   getList ():IButton[]
   {
-    return this.List;
+    return ButtonServicesService.List;
   }
   GetDeatails(id:number):IButton
   {
-for(let i of this.List)
+for(let i of ButtonServicesService.List)
 {
   if(id==i.butiId)
   return i ; 
@@ -29,7 +29,7 @@ for(let i of this.List)
 
   getActivity(id:number):IActivity
   {
-    for(let i of this.List)
+    for(let i of ButtonServicesService.List)
     {
      for(let j of i.Activities)
      {
@@ -39,14 +39,16 @@ for(let i of this.List)
     }
   }
 
-  EditButton (id:number, name:string,order:string):void {
+  EditButton (id:number, name:string,order:string,act:IActivity[]):void {
     
   
 let count = this.getIndex(id);
  
 if(count!=-1)
-  {  this.List[count].name=name; 
-    this.List[count].order=order;
+  {  ButtonServicesService.List[count].name=name; 
+    ButtonServicesService.List[count].order=order;
+    ButtonServicesService.List[count].Activities.concat(act);
+    
   }
     
      
@@ -56,7 +58,7 @@ if(count!=-1)
   {
     let x =-1; 
     let count = -1; 
-    for(let i of this.List)
+    for(let i of ButtonServicesService.List)
    {  x++;
      if(i.butiId==id)
      {
@@ -68,7 +70,7 @@ if(count!=-1)
 
     if(count!=-1){
    
-    delete this.List[count];
+     ButtonServicesService.List.splice(count,1);
     
    
     }
@@ -79,9 +81,9 @@ if(count!=-1)
   getIndex(id:number):number
   {
     let x=-1; 
-    for(var i=0;i<this.List.length;i++)
+    for(var i=0;i<ButtonServicesService.List.length;i++)
     {
-      if(this.List[i].butiId==id)
+      if(ButtonServicesService.List[i].butiId==id)
       {x=i; 
         break; 
       }

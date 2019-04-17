@@ -30,7 +30,7 @@
 
 
     <div class="form-group mx-sm-3 mb-2">
-      <button class="btn btn-outline-secondary" (click)="onAddActivity()" *ngIf='!this.ShowForm'>
+      <button class="btn btn-outline-secondary" (click)="onAddActivity()" *ngIf='!this.ShowForm' >
         Add Activity
 
 
@@ -82,7 +82,7 @@
           <div class="col-md-4"></div>
           <div class="col-md-4">
             <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onsaveActivity()">
-              save
+              Add
 
 
             </button>
@@ -126,61 +126,62 @@
             <td> {{product.Type}} </td>
 
             <td> <a (click)="ondeletActivity(product.ActId)" [routerLink]="['/EditButton']" >Delete </a>
-              <a [routerLink]="['/EditButton']" (click)="onEdit()"> Edit</a>
+              <a [routerLink]="['/ActivityDetails']" (click)="onEdit(product.ActId)"> Edit</a>
             </td>
 
           </tr>
-          <div class="card" *ngIf="showEdit">
-            <div class="card-header">
-              Edit Activity
-
-            </div>
-            <div class='card-body'>
-                <div class="form-group mx-sm-3 mb-2">
-                    <label for="exampleInputEmail1">Type : </label>
-          
-                    <select class="form-control dropdown" [(ngModel)]='Type'>
-                      <option value="Print_ticket_type">Print ticket type</option>
-                      <option value="Request_identification">Request identification</option>
-                      <option value="Confirmation activity">Confirmation activity</option>
-          
-                    </select>
-                  </div>
-                  <div class="form-group mx-sm-3 mb-2">
-                    <label for="exampleInputPassword1">Information message : </label>
-                    <input [(ngModel)]="Information_message" class="form-control" id="exampleInputPassword1">
-                  </div>
-                  
-          </div>
-          <div class="card-footer">
-              <div class="row">
-                <div class="col-md-4">
-      
-                </div>
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                  <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onsaveedit()">
-                    save
-      
-      
-                  </button>
-                  <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onsaveedit()">
-                    Cancel
-      
-      
-                  </button>
-      
-                </div>
-              </div>
-      
-            </div>
-
-
-            
-          </div>
+         
         
         </tbody>
       </table>
+      <div class="card" *ngIf="showEdit">
+        <div class="card-header">
+          Edit Activity
+
+        </div>
+        <div class='card-body'>
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="exampleInputEmail1">Type : </label>
+      
+                <select class="form-control dropdown" [(ngModel)]='Type2'>
+                  <option value="Print ticket type">Print ticket type</option>
+                  <option value="Request identification">Request identification</option>
+                  <option value="Confirmation activity">Confirmation activity</option>
+      
+                </select>
+              </div>
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="exampleInputPassword1">Information message : </label>
+                <input [(ngModel)]="Information_message2" class="form-control" id="exampleInputPassword1">
+              </div>
+              
+      </div>
+      <div class="card-footer">
+          <div class="row">
+            <div class="col-md-4">
+  
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onsaveedit()">
+                Save
+  
+  
+              </button>
+              <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onCanceledit()">
+                Cancel
+  
+  
+              </button>
+  
+            </div>
+          </div>
+  
+        </div>
+
+
+        
+      </div>
     </div>
 
 
@@ -201,12 +202,17 @@
   <div class="card-footer">
     <div class="row">
       <div class="col-md-4">
-
+        <button class="btn btn-outline-secondary" (click)="onBack()" >
+          <i class="fa fa-chevron-left"></i>
+          Back
+        
+        
+        </button>
       </div>
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <button class="btn btn-outline-secondary" style="float:right" (click)="onCreate()">
-          Create
+          {{ButtonText}}
 
 
         </button>

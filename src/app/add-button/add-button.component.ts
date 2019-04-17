@@ -3,7 +3,6 @@ import { IActivity } from '../butoons-list/IActivity';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonServicesService } from '../button-services.service';
 import { IButton } from '../butoons-list/IButton';
-import { resolveDefinition } from '@angular/core/src/view/util';
 
 @Component({
   
@@ -11,15 +10,36 @@ import { resolveDefinition } from '@angular/core/src/view/util';
   styleUrls: ['./add-button.component.css']
 })
 export class AddButtonComponent implements OnInit {
- public PageTitle:string ="Create Button";
+ public PageTitle:string ="";
   public ShowForm:boolean=false;
   public showEdit:boolean =false; 
+  ActId:number;
   Type:string;
+  Type2:string;
  public Information_message:string;
+ public Information_message2:string;
   public  Activities : IActivity []=[];
  public name:string;
   public order:string;
-  constructor(private route:ActivatedRoute,private router:Router,private myList:ButtonServicesService) { }
+  ButtonText:string ;
+  constructor(private route:ActivatedRoute,private router:Router,private myList:ButtonServicesService) {
+    let Id= +this.route.snapshot.paramMap.get("id");
+    if(Id!=-100)
+    {
+      this.PageTitle="Edit Button "; 
+      this.Activities=myList.GetDeatails(Id).Activities;
+      this.name=myList.GetDeatails(Id).name;
+      this.order=myList.GetDeatails(Id).order;
+      this.ButtonText="Update";
+      
+    }
+    else 
+    {
+      this.PageTitle="Add Button";
+      this.ButtonText="Create";
+    }
+   
+   }
 
   ngOnInit() {
   }
@@ -49,25 +69,73 @@ export class AddButtonComponent implements OnInit {
 
   onCreate():void 
   {
-    let tempButton:IButton;
-    tempButton.name=this.name;
-    tempButton.order=this.order;
-    tempButton.butiId=+this.myList.List.length+1;
-    tempButton.Activities=this.Activities;
-    this.myList.List.push(tempButton);
+    if(this.PageTitle=="Add Button")
+    {
+      const  tempButton=<IButton>      {
+       name:this.name,
+       order:this.order,
+       butiId:+ButtonServicesService.List.length+1,
+       Activities:this.Activities
+  };
+    this.myList.AddButton(tempButton);
+    this.router.navigate(['ButtonList']);
+    }
+    else 
+    {
+      let Id= +this.route.snapshot.paramMap.get("id");
+      this.myList.EditButton(Id,this.name,this.order,this.Activities);
+
+      this.router.navigate(['ButtonList']);
+    }
+    
   }
   onCancel():void{
     this.ShowForm=false;
 
   }
 
-  onEdit():void 
+  onEdit(id:number):void 
   {
-    this.showEdit=true; 
+   
+    
+    for (var i=0 ; i<this.Activities.length;i++)
+    {
+      if(this.Activities[i].ActId==id)
+      {
+        this.Type2=this.Activities[i].Type;
+        this.Information_message2=this.Activities[i].informationMessage;
+      this.ActId=this.Activities[i].ActId;  
+       this.showEdit=true; 
+       break;
+       
+      }
+    }
+ 
+    
+    
+ 
   }
   onsaveedit(){
-    this.showEdit=false;
+
+
+    for (var i=0 ; i<this.Activities.length;i++)
+    {
+      if(this.Activities[i].ActId==this.ActId)
+      {
+        this.Activities[i].Type=this.Type2;
+      this.Activities[i].informationMessage=  this.Information_message2;
+     
+       this.showEdit=false; 
+       break;
+       
+      }
+    }
+
+
+  
   }
+
+
   ondeletActivity (actid:number):void 
   {let pos=-1; 
 for(var i=0; i<this.Activities.length;i++)
@@ -79,8 +147,17 @@ for(var i=0; i<this.Activities.length;i++)
 
 }
 if(pos!=-1)
-delete this.Activities[pos];
+ this.Activities.splice(pos,1);
 
+
+  }
+  onBack():void 
+  {
+    this.router.navigate(['/ButtonList']);
+  }
+  onCanceledit():void 
+  {
+    this.showEdit=false; 
 
   }
 }

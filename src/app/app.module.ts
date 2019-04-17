@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButoonsListComponent } from './butoons-list/butoons-list.component';
 import { AddButtonComponent } from './add-button/add-button.component';
-import { EditButtonComponent } from './edit-button/edit-button.component';
+
 import { ButtonDetailsComponent } from './button-details/button-details.component';
 import { ActivityDetailsComponent } from './activity-details/activity-details.component';
 
@@ -17,7 +17,6 @@ import { EditActivityComponent } from './edit-activity/edit-activity.component';
     AppComponent,
     ButoonsListComponent,
     AddButtonComponent,
-    EditButtonComponent,
     ButtonDetailsComponent,
     ActivityDetailsComponent,
     EditActivityComponent,
@@ -32,8 +31,8 @@ import { EditActivityComponent } from './edit-activity/edit-activity.component';
     RouterModule.forRoot([
      
       {path:'ButtonList',component:ButoonsListComponent},
-      {path:'AddButton',component:AddButtonComponent},
-      {path:'EditButton/:id',component:EditButtonComponent},
+      {path:'AddButton/:id',component:AddButtonComponent},
+
       {path:'',redirectTo:"ButtonList",pathMatch:'full'},
       {path:'Details/:id',component:ButtonDetailsComponent},
       {path : "ActivityDetails/:id/:bid",component:ActivityDetailsComponent},
