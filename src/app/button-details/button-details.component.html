@@ -37,14 +37,14 @@ Activities List :
           <td> {{product.informationMessage}} </td>
           <td> {{product.Type}} </td>
           <td> <a [routerLink]="['/ActivityDetails',product.ID,CrrentButton.ID]" >Details </a> 
-            <a [routerLink]="['/AddButton']" (click)="onEditActivity(product.ID)" > Edit</a>
+            <a  [routerLink]="['/AddButton']" (click)="onEditActivity(product.ID)" > Edit</a>
             <a (click)="onDelete(product.ID)" [routerLink]="['/AddButton']"> Delete</a>
             </td>
          
         </tr>
       </tbody>
     </table>
-    <div class="card" *ngIf="showEditForm">
+    <div id="Edit" class="card" *ngIf="showEditForm">
       <div class="card-header">
         Edit Activity
 

@@ -126,7 +126,7 @@
             <td> {{product.Type}} </td>
 
             <td> <a (click)="ondeletActivity(product.ID)" [routerLink]="['/EditButton']" >Delete </a>
-              <a [routerLink]="['/ActivityDetails']" (click)="onEdit(product.ID)"> Edit</a>
+              <a  [routerLink]="['/ActivityDetails']" (click)="onEdit(product.ID)"> Edit</a>
             </td>
 
           </tr>
@@ -134,7 +134,7 @@
         
         </tbody>
       </table>
-      <div class="card" *ngIf="showEditActivityFrom">
+      <div id="Edit" class="card" *ngIf="showEditActivityFrom">
         <div class="card-header">
           Edit Activity
 

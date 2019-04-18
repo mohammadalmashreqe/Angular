@@ -47,6 +47,8 @@ export class AddButtonComponent implements OnInit {
 
   onAddActivity():void {
     this.showAddActivityForm=true;
+    this.Information_message="";
+    this.Type="";
 
   }
   onsaveActivity():void 
@@ -112,7 +114,6 @@ export class AddButtonComponent implements OnInit {
 
   onEdit(id:number):void 
   {
-   
     
     for (var i=0 ; i<this.Activities.length;i++)
     {
@@ -153,7 +154,10 @@ export class AddButtonComponent implements OnInit {
 
 
   ondeletActivity (actid:number):void 
-  {let pos=-1; 
+  {
+   if(confirm("Are you sure you want to delete?"))
+   {
+    let pos=-1; 
 for(var i=0; i<this.Activities.length;i++)
 {
   if(this.Activities[i].ID==actid)
@@ -164,7 +168,8 @@ for(var i=0; i<this.Activities.length;i++)
 }
 if(pos!=-1)
  this.Activities.splice(pos,1);
-
+   }
+   
 
   }
   onBack():void 

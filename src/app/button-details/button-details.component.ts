@@ -37,6 +37,8 @@ export class ButtonDetailsComponent implements OnInit {
 
     onDelete(ActId:number):void 
     {
+      if(confirm("Are you sure you want to delete?"))
+      {
       let pos = -1; 
 
      for (var i=0; i<this.CrrentButton.Activities.length;i++)
@@ -51,6 +53,7 @@ export class ButtonDetailsComponent implements OnInit {
       this.CrrentButton.Activities.splice(pos,1);
 
     }
+  }
 
 
   }

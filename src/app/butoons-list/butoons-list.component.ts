@@ -32,8 +32,9 @@ export class ButoonsListComponent implements OnInit {
   onDelete(Id:number):void
   {
    
-    
+    if(confirm("Are you sure you want to delete?"))
+    {
     this.myList.DeleteButton(Id);
-
+    }
   }
 }
