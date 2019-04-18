@@ -13,7 +13,7 @@
         
             <th>Name</th>
             <th>Order</th>
-            <th>Number Of Activity</th>
+            <th>Number Of Activities</th>
             <th></th>
 
             
@@ -25,9 +25,9 @@
             <td> {{product.name}} </td>
             <td> {{product.order}} </td>
              <td>{{product.Activities.length}}</td>
-           <td>  <a [routerLink]="['/Details',product.butiId]"  >Details   </a>
-            <a [routerLink]="['/AddButton',product.butiId]"  >  Edit</a>
-            <a (click)="onDelete(product.butiId)" [routerLink]="['/AddButton']">  Delete</a>
+           <td>  <a [routerLink]="['/Details',product.ID]"  >Details   </a>
+            <a [routerLink]="['/AddButton',product.ID]"  >  Edit</a>
+            <a (click)="onDelete(product.ID)" [routerLink]="['/AddButton']">  Delete</a>
 
           </td>
         
@@ -38,10 +38,10 @@
 
   </div>
 
-  <div class="card-footer">
+  <div class="card-footer">       
+
       <button class="btn btn-outline-secondary" style="float: right" (click)="onCreate()" >
-        
-        Create Button
+      Create Button 
       
       
       </button>

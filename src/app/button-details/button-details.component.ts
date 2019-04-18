@@ -9,16 +9,16 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   selector: 'app-button-details',
   templateUrl: './button-details.component.html',
   styleUrls: ['./button-details.component.css'],
-  providers:[ButtonServicesService]
+ 
 })
 export class ButtonDetailsComponent implements OnInit {
  
   PageTitle:string="Button Details";
   CrrentButton : IButton;
-  showEdit:boolean=false;
+  showEditForm:boolean=false;
   Type:string ;
  Information_message:string;
- Actid:number;
+ ActivityID:number;
 
   constructor(private route:ActivatedRoute,private router:Router,private myList:ButtonServicesService) {
   
@@ -41,7 +41,7 @@ export class ButtonDetailsComponent implements OnInit {
 
      for (var i=0; i<this.CrrentButton.Activities.length;i++)
      {
-       if(this.CrrentButton.Activities[i].ActId==ActId)
+       if(this.CrrentButton.Activities[i].ID==ActId)
        pos=i; 
 
      }
@@ -61,7 +61,7 @@ export class ButtonDetailsComponent implements OnInit {
   for (var i=0; i<this.CrrentButton.Activities.length;i++)
   {
 
-    if(this.CrrentButton.Activities[i].ActId==this.Actid)
+    if(this.CrrentButton.Activities[i].ID==this.ActivityID)
     pos=i; 
 
   }
@@ -69,7 +69,7 @@ if(pos!=-1)
    {this.CrrentButton.Activities[pos].Type=this.Type;
    this.CrrentButton.Activities[pos].informationMessage=this.Information_message;
    
-  this.showEdit=false; 
+  this.showEditForm=false; 
    }
 
  }
@@ -77,21 +77,27 @@ if(pos!=-1)
  onEditActivity(id :number):void 
 
  {
-   this.Actid=id; 
+   this.ActivityID=id; 
    
    for(var i=0;i<this.CrrentButton.Activities.length;i++)
    {
-     if(this.CrrentButton.Activities[i].ActId==id)
+     if(this.CrrentButton.Activities[i].ID==id)
      {
-      this.Actid=id; 
+      this.ActivityID=id; 
       this.Type=this.CrrentButton.Activities[i].Type;
       this.Information_message=this.CrrentButton.Activities[i].informationMessage;
- this.showEdit=true;
+ this.showEditForm=true;
  break; 
      }
    }
    
    
+   
+ }
+
+ onCanceledit():void 
+ {
+   this.showEditForm=false; 
    
  }
 

@@ -6,48 +6,49 @@ import { IActivity } from './butoons-list/IActivity';
   providedIn: 'root'
 })
 export class ButtonServicesService {
- static List :IButton[] =[];
+   List :IButton[] =[];
   constructor() { }
 
-  AddButton (b :IButton):void 
+  AddButton (Button :IButton):void 
   {
-    ButtonServicesService.List.push(b);
+    this.List.push(Button);
   }
   getList ():IButton[]
   {
-    return ButtonServicesService.List;
+    return this.List;
   }
   GetDeatails(id:number):IButton
   {
-for(let i of ButtonServicesService.List)
-{
-  if(id==i.butiId)
-  return i ; 
-}
+      for(let Item of this.List)
+      {
+      if(id==Item.ID)
+      return Item ; 
+    }
 
   }
 
   getActivity(id:number):IActivity
   {
-    for(let i of ButtonServicesService.List)
+    for(let Button of this.List)
     {
-     for(let j of i.Activities)
+     for(let Activity of Button.Activities)
      {
-       if(j.ActId==id)
-       return j; 
+       if(Activity.ID==id)
+       return Activity; 
      }
     }
   }
 
-  EditButton (id:number, name:string,order:string,act:IActivity[]):void {
+  EditButton (id:number, name:string,order:number,activities:IActivity[]):void {
     
   
-let count = this.getIndex(id);
+let Index = this.getIndex(id);
  
-if(count!=-1)
-  {  ButtonServicesService.List[count].name=name; 
-    ButtonServicesService.List[count].order=order;
-    ButtonServicesService.List[count].Activities.concat(act);
+if(Index!=-1)
+  {
+    this.List[Index].name=name; 
+    this.List[Index].order=order;
+    this.List[Index].Activities.concat(activities);
     
   }
     
@@ -56,21 +57,21 @@ if(count!=-1)
 
   DeleteButton (id:number):void 
   {
-    let x =-1; 
-    let count = -1; 
-    for(let i of ButtonServicesService.List)
-   {  x++;
-     if(i.butiId==id)
+    let Counter =-1; 
+    let Index = -1; 
+    for(let Item of this.List)
+   {  Counter++;
+     if(Item.ID==id)
      {
        
-       count=x; 
+       Index=Counter; 
        break; 
      }
     }
 
-    if(count!=-1){
+    if(Index!=-1){
    
-     ButtonServicesService.List.splice(count,1);
+      this.List.splice(Index,1);
     
    
     }
@@ -80,16 +81,16 @@ if(count!=-1)
   
   getIndex(id:number):number
   {
-    let x=-1; 
-    for(var i=0;i<ButtonServicesService.List.length;i++)
+    let Index=-1; 
+    for(var counter=0;counter<this.List.length;counter++)
     {
-      if(ButtonServicesService.List[i].butiId==id)
-      {x=i; 
+      if(this.List[counter].ID==id)
+      {Index=counter; 
         break; 
       }
 
     }
-    return x; 
+    return Index; 
   }
 
 }

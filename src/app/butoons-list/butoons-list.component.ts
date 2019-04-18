@@ -8,11 +8,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 
   templateUrl: './butoons-list.component.html',
   styleUrls: ['./butoons-list.component.css'],
-  providers:[ButtonServicesService]
+
 
 })
 export class ButoonsListComponent implements OnInit {
-  pageTitle:string="Button List";
+  pageTitle:string="Buttons List";
   Length :number;
   List:IButton[];
   constructor( private route:ActivatedRoute,private router:Router,private myList:ButtonServicesService) { 
@@ -31,6 +31,7 @@ export class ButoonsListComponent implements OnInit {
   }
   onDelete(Id:number):void
   {
+   
     
     this.myList.DeleteButton(Id);
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ButtonServicesService } from '../button-services.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IActivity } from '../butoons-list/IActivity';
+import { ButtonServicesService } from '../button-services.service';
 
 @Component({
   selector: 'app-activity-details',
@@ -10,12 +10,12 @@ import { IActivity } from '../butoons-list/IActivity';
   
 })
 export class ActivityDetailsComponent implements OnInit {
-bid:number ;
+ButtonID:number ;
   PageTitle :string="Activity Details"
   currenActivity : IActivity;
   constructor(private route:ActivatedRoute,private router:Router,private myList:ButtonServicesService) {
     let Id= +this.route.snapshot.paramMap.get("id");
-    this.bid= +this.route.snapshot.paramMap.get("bid"); 
+    this.ButtonID= +this.route.snapshot.paramMap.get("bid"); 
     this.currenActivity=myList.getActivity(Id);
    }
 
@@ -23,6 +23,6 @@ bid:number ;
   }
   onBack():void 
   {
-    this.router.navigate(['/Details',this.bid]);
+    this.router.navigate(['/Details',this.ButtonID]);
   }
 }

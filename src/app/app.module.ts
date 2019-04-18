@@ -4,13 +4,14 @@ import {RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButoonsListComponent } from './butoons-list/butoons-list.component';
-import { AddButtonComponent } from './add-button/add-button.component';
+import { AddButtonComponent } from './Button Attributes/attributes-button.component';
 
 import { ButtonDetailsComponent } from './button-details/button-details.component';
 import { ActivityDetailsComponent } from './activity-details/activity-details.component';
 
 import {FormsModule} from '@angular/forms';
-import { EditActivityComponent } from './edit-activity/edit-activity.component';
+
+import { ButtonServicesService } from './button-services.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,6 @@ import { EditActivityComponent } from './edit-activity/edit-activity.component';
     AddButtonComponent,
     ButtonDetailsComponent,
     ActivityDetailsComponent,
-    EditActivityComponent,
    
     
 
@@ -35,8 +35,8 @@ import { EditActivityComponent } from './edit-activity/edit-activity.component';
 
       {path:'',redirectTo:"ButtonList",pathMatch:'full'},
       {path:'Details/:id',component:ButtonDetailsComponent},
-      {path : "ActivityDetails/:id/:bid",component:ActivityDetailsComponent},
-      {path:"EditActivity/:id/:bid",component:EditActivityComponent}
+      {path : "ActivityDetails/:id/:bid",component:ActivityDetailsComponent}
+  
  ])
   ],
   providers: [],

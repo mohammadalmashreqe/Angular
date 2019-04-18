@@ -6,21 +6,22 @@ import { IButton } from '../butoons-list/IButton';
 
 @Component({
   
-  templateUrl: './add-button.component.html',
-  styleUrls: ['./add-button.component.css']
+  templateUrl: './attributes-button.component.html',
+  styleUrls: ['./attributes-button.component.css']
 })
 export class AddButtonComponent implements OnInit {
  public PageTitle:string ="";
-  public ShowForm:boolean=false;
-  public showEdit:boolean =false; 
-  ActId:number;
+  public showAddActivityForm:boolean=false;
+  public showEditActivityFrom:boolean =false; 
+  ActivityId:number;
   Type:string;
-  Type2:string;
+  TypeofeditingActivity:string;
+  isOrderValid:string;
  public Information_message:string;
- public Information_message2:string;
+ public Information_message_ofEditingActivity:string;
   public  Activities : IActivity []=[];
  public name:string;
-  public order:string;
+  public order:number;
   ButtonText:string ;
   constructor(private route:ActivatedRoute,private router:Router,private myList:ButtonServicesService) {
     let Id= +this.route.snapshot.paramMap.get("id");
@@ -45,7 +46,7 @@ export class AddButtonComponent implements OnInit {
   }
 
   onAddActivity():void {
-    this.ShowForm=true;
+    this.showAddActivityForm=true;
 
   }
   onsaveActivity():void 
@@ -53,12 +54,12 @@ export class AddButtonComponent implements OnInit {
     
      
      const temp = <IActivity> {
-     ActId:this.Activities.length,
+     ID:this.Activities.length,
      Type:this.Type,
     informationMessage:this.Information_message
 
   };
-  this.ShowForm=false;
+  this.showAddActivityForm=false;
   
   
 
@@ -69,12 +70,18 @@ export class AddButtonComponent implements OnInit {
 
   onCreate():void 
   {
+    
+    
+    if(+this.order)
+    {
+      if(Number.isInteger(this.order))
+      {
     if(this.PageTitle=="Add Button")
     {
       const  tempButton=<IButton>      {
        name:this.name,
        order:this.order,
-       butiId:+ButtonServicesService.List.length+1,
+       ID:+this.myList.List.length+1,
        Activities:this.Activities
   };
     this.myList.AddButton(tempButton);
@@ -87,10 +94,19 @@ export class AddButtonComponent implements OnInit {
 
       this.router.navigate(['ButtonList']);
     }
+    this.isOrderValid="";
+  }
+  else
+  {
+    this.isOrderValid="Please Enter an integer number ";
+  }
+}
+  else 
+  this.isOrderValid="Please Enter a valid number ";
     
   }
   onCancel():void{
-    this.ShowForm=false;
+    this.showAddActivityForm=false;
 
   }
 
@@ -100,12 +116,12 @@ export class AddButtonComponent implements OnInit {
     
     for (var i=0 ; i<this.Activities.length;i++)
     {
-      if(this.Activities[i].ActId==id)
-      {
-        this.Type2=this.Activities[i].Type;
-        this.Information_message2=this.Activities[i].informationMessage;
-      this.ActId=this.Activities[i].ActId;  
-       this.showEdit=true; 
+      if(this.Activities[i].ID==id)
+      { this.showEditActivityFrom=true; 
+        this.TypeofeditingActivity=this.Activities[i].Type;
+        this.Information_message_ofEditingActivity=this.Activities[i].informationMessage;
+      this.ActivityId=this.Activities[i].ID;  
+       
        break;
        
       }
@@ -120,12 +136,12 @@ export class AddButtonComponent implements OnInit {
 
     for (var i=0 ; i<this.Activities.length;i++)
     {
-      if(this.Activities[i].ActId==this.ActId)
+      if(this.Activities[i].ID==this.ActivityId)
       {
-        this.Activities[i].Type=this.Type2;
-      this.Activities[i].informationMessage=  this.Information_message2;
+        this.Activities[i].Type=this.TypeofeditingActivity;
+      this.Activities[i].informationMessage=  this.Information_message_ofEditingActivity;
      
-       this.showEdit=false; 
+       this.showEditActivityFrom=false; 
        break;
        
       }
@@ -140,7 +156,7 @@ export class AddButtonComponent implements OnInit {
   {let pos=-1; 
 for(var i=0; i<this.Activities.length;i++)
 {
-  if(this.Activities[i].ActId==actid)
+  if(this.Activities[i].ID==actid)
   {pos=i; 
   break; 
   }
@@ -157,7 +173,7 @@ if(pos!=-1)
   }
   onCanceledit():void 
   {
-    this.showEdit=false; 
+    this.showEditActivityFrom=false; 
 
   }
 }

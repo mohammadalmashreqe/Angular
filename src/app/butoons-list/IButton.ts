@@ -4,10 +4,10 @@ import { IActivity } from './IActivity';
 
 export interface IButton 
 {
-    butiId:number;
+    ID:number;
     name : string ; 
 
-    order : string ;
+    order : number ;
     
     Activities : IActivity [];
      

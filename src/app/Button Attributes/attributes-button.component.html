@@ -18,19 +18,19 @@
 
     <div class="form-group mx-sm-3 mb-2">
       <label for="exampleInputEmail1">Name : </label>
-      <input type="email" [(ngModel)]='name' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <input type="email" [(ngModel)]='name' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  >
 
     </div>
     <div class="form-group mx-sm-3 mb-2">
       <label for="exampleInputPassword1">Order : </label>
-      <input type="number" [(ngModel)]='order' class="form-control" id="exampleInputPassword1">
+      <input type="number" [(ngModel)]='order' class="form-control" id="exampleInputPassword1"><label style="color: red"> {{isOrderValid}} </label>
     </div>
 
     <br>
 
 
     <div class="form-group mx-sm-3 mb-2">
-      <button class="btn btn-outline-secondary" (click)="onAddActivity()" *ngIf='!this.ShowForm' >
+      <button class="btn btn-outline-secondary" (click)="onAddActivity()" *ngIf='!this.showAddActivityForm' >
         Add Activity
 
 
@@ -38,7 +38,7 @@
 
     </div>
 
-    <div class="card" *ngIf="ShowForm">
+    <div class="card" *ngIf="showAddActivityForm">
 
       <div class="card-header">
 
@@ -125,8 +125,8 @@
             <td> {{product.informationMessage}} </td>
             <td> {{product.Type}} </td>
 
-            <td> <a (click)="ondeletActivity(product.ActId)" [routerLink]="['/EditButton']" >Delete </a>
-              <a [routerLink]="['/ActivityDetails']" (click)="onEdit(product.ActId)"> Edit</a>
+            <td> <a (click)="ondeletActivity(product.ID)" [routerLink]="['/EditButton']" >Delete </a>
+              <a [routerLink]="['/ActivityDetails']" (click)="onEdit(product.ID)"> Edit</a>
             </td>
 
           </tr>
@@ -134,7 +134,7 @@
         
         </tbody>
       </table>
-      <div class="card" *ngIf="showEdit">
+      <div class="card" *ngIf="showEditActivityFrom">
         <div class="card-header">
           Edit Activity
 
@@ -143,7 +143,7 @@
             <div class="form-group mx-sm-3 mb-2">
                 <label for="exampleInputEmail1">Type : </label>
       
-                <select class="form-control dropdown" [(ngModel)]='Type2'>
+                <select class="form-control dropdown" [(ngModel)]='TypeofeditingActivity'>
                   <option value="Print ticket type">Print ticket type</option>
                   <option value="Request identification">Request identification</option>
                   <option value="Confirmation activity">Confirmation activity</option>
@@ -152,7 +152,7 @@
               </div>
               <div class="form-group mx-sm-3 mb-2">
                 <label for="exampleInputPassword1">Information message : </label>
-                <input [(ngModel)]="Information_message2" class="form-control" id="exampleInputPassword1">
+                <input [(ngModel)]="Information_message_ofEditingActivity" class="form-control" id="exampleInputPassword1">
               </div>
               
       </div>
@@ -212,7 +212,7 @@
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <button class="btn btn-outline-secondary" style="float:right" (click)="onCreate()">
-          {{ButtonText}}
+             {{ButtonText}}
 
 
         </button>

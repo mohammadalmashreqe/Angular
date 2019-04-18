@@ -3,7 +3,7 @@
 
 
 export interface IActivity {
-    ActId :number;
+    ID :number;
 informationMessage : string ;
 Type : string ;
 
