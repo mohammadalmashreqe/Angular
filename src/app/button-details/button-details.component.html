@@ -38,7 +38,7 @@ Activities List :
           <td> {{product.Type}} </td>
           <td> <a [routerLink]="['/ActivityDetails',product.ID,CrrentButton.ID]" >Details </a> 
             <a  [routerLink]="['/AddButton']" (click)="onEditActivity(product.ID)" > Edit</a>
-            <a (click)="onDelete(product.ID)" [routerLink]="['/AddButton']"> Delete</a>
+            <a (click)="onDeleteActivity(product.ID)" [routerLink]="['/AddButton']"> Delete</a>
             </td>
          
         </tr>
@@ -73,12 +73,12 @@ Activities List :
           </div>
           <div class="col-md-4"></div>
           <div class="col-md-4">
-            <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onsaveedit()">
+            <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)=" onEndofEditActivity()">
               Save
 
 
             </button>
-            <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onCanceledit()">
+            <button class="btn btn-outline-secondary" style="float:right; margin: 10px;" (click)="onCanceleditActivity()">
               Cancel
 
 

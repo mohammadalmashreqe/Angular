@@ -11,7 +11,10 @@ import { ActivityDetailsComponent } from './activity-details/activity-details.co
 
 import {FormsModule} from '@angular/forms';
 
-import { ButtonServicesService } from './button-services.service';
+
+/**
+ * Ng module
+ */
 
 @NgModule({
   declarations: [

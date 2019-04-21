@@ -12,29 +12,46 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 })
 export class ButoonsListComponent implements OnInit {
-  pageTitle:string="Buttons List";
-  Length :number;
-  List:IButton[];
-  constructor( private route:ActivatedRoute,private router:Router,private myList:ButtonServicesService) { 
-    this.List=myList.getList();
- 
+  pageTitle: string = "Buttons List";
+  Length: number;
+  List: IButton[];
+  constructor(private route: ActivatedRoute, private router: Router, private myList: ButtonServicesService) {
+    this.List = myList.getList();
+
 
   }
 
+  /**
+   * on init
+   */
   ngOnInit() {
   }
-  onCreate():void 
-  {
-   
-    this.router.navigate(['/AddButton',-100]);
-    
+  /**
+   * Determines whether create on
+   */
+  onCreate(): void {
+try {
+    this.router.navigate(['/AddButton', -100]);
+}
+catch (err) {
+  console.log(err);
+}
+
   }
-  onDelete(Id:number):void
-  {
-   
-    if(confirm("Are you sure you want to delete?"))
-    {
-    this.myList.DeleteButton(Id);
+  /**
+   * Determines whether delete on
+   * @param Id 
+   */
+  onDelete(Id: number): void {
+    try {
+
+      if (confirm("Are you sure you want to delete?")) {
+        this.myList.DeleteButton(Id);
+      }
+    }
+    catch (err) {
+      console.log(err);
     }
   }
+
 }

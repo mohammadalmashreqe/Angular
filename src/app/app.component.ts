@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IButton } from './butoons-list/IButton';
 
 @Component({
   selector: 'app-root',
